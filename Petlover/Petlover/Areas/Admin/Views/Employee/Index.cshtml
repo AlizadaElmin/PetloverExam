@@ -1,0 +1,42 @@
+﻿@model ICollection<EmployeeItemVM>
+
+@{
+    ViewData["Title"] = "Employees";
+}
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <a asp-action="Create" asp-controller="Employee">Employee Create</a>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Surname</th>
+                        <th>Deparment</th>
+                        <th colspan="2">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(var item in Model)
+                    {
+                        <tr>
+                            <th>@item.Id</th>
+                            <th><img src="~/images/employees/@item.ImageUrl" /></th>
+                            <th>@item.Name</th>
+                            <th>@item.Surname</th>
+                            <th>@item.Department.Name</th>
+                            <th><a asp-action="Update" asp-controller="Employee" asp-route-id="@item.Id">Update</a></th>
+                            <th><a asp-action="Delete" asp-controller="Employee" asp-route-id="@item.Id">Delete</a></th>
+                        </tr>
+                    }
+           
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
